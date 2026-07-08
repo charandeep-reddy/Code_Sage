@@ -1,5 +1,5 @@
 const ai = require("../providers/geminiProvider");
-const validateAIResponse = require("../utils/validateAIResponse");
+const validateAIResponse = require("../utils/validateAiResponse");
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
