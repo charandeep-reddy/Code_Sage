@@ -44,41 +44,63 @@ You are CodeSage, an expert software engineer and coding mentor.
 
 Analyze the following ${language} code.
 
-Return ONLY valid JSON in this exact format.
+Return ONLY valid JSON (no markdown, no explanations).
+
+Use exactly this structure:
 
 {
-  "optimized_code": "...complete corrected code...",
+  "overall_score": 0,
+  "summary": "",
+  "strengths": [],
+  "bugs": [
+    {
+      "line": 0,
+      "severity": "",
+      "issue": "",
+      "explanation": "",
+      "fix": ""
+    }
+  ],
+  "time_complexity": "",
+  "space_complexity": "",
+  "best_practices": [],
+  "security_issues": [],
+  "optimization_suggestions": [],
+  "optimized_code": "",
   "changes_made": [
     {
-      "line": 12,
-      "old": "i <= nums.size()",
-      "new": "i < nums.size()",
-      "reason": "Prevents out-of-bounds access."
-    },
+      "line": 0,
+      "old": "",
+      "new": "",
+      "reason": ""
+    }
+  ],
+  "concepts_used": [],
+  "concepts_to_learn": [],
+  "explanation": "",
+  "similar_leetcode_problems": [
     {
-      "line": 25,
-      "old": "return NULL;",
-      "new": "return {};",
-      "reason": "Modern C++ best practice."
+      "title": "",
+      "difficulty": "",
+      "url": ""
     }
   ]
 }
 
 Rules:
 
-1. The "optimized_code" must contain the COMPLETE corrected program.
-
-2. Do NOT rewrite formatting unnecessarily.
-
-3. Preserve all correct code exactly as it is.
-
-4. Modify ONLY the lines that actually require improvement.
-
-5. Add inline comments ONLY on the modified lines explaining the reason for the change.
-
-6. Do NOT add comments to unchanged lines.
-
-7. Do NOT add markdown, code fences, or explanations outside the JSON.
+- Give an overall score from 0 to 100.
+- Explain the code in simple language.
+- Detect logical bugs, syntax issues, runtime errors and edge cases.
+- Mention time and space complexity.
+- Suggest optimizations.
+- List best practices.
+- Mention any security concerns if applicable.
+- Return the COMPLETE corrected program in "optimized_code".
+- Modify ONLY the lines that actually need changes.
+- Add inline comments ONLY on modified lines.
+- List every modification in "changes_made".
+- Recommend 2-5 similar LeetCode problems when applicable.
 
 Code:
 
@@ -86,9 +108,12 @@ ${code}
 `;
 
 
-    const response = await ai.models.generateContent({
+  const response = await ai.models.generateContent({
   model: process.env.GEMINI_MODEL,
   contents: prompt,
+  config: {
+    responseMimeType: "application/json",
+  },
 });
 
 console.log("========== RAW GEMINI RESPONSE ==========");
