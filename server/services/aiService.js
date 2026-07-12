@@ -36,10 +36,12 @@ async function generateWithRetry(prompt) {
   }
 }
 
+
 const reviewCode = async (language, code) => {
   try {
+    console.log("🚀 reviewCode() started");
 
-   const prompt = `
+    const prompt = `
 You are CodeSage, an expert software engineer and coding mentor.
 
 Analyze the following ${language} code.
@@ -107,33 +109,35 @@ Code:
 ${code}
 `;
 
+    console.log("📤 Sending request to Gemini...");
 
-  const response = await ai.models.generateContent({
-  model: process.env.GEMINI_MODEL,
-  contents: prompt,
-  config: {
-    responseMimeType: "application/json",
-  },
-});
+    const response = await generateWithRetry(prompt);
 
-console.log("========== RAW GEMINI RESPONSE ==========");
-console.log(response.text);
-console.log("=========================================");
+    console.log("✅ Gemini request completed.");
+
+    console.log("========== RAW GEMINI RESPONSE ==========");
+    console.log(response.text);
+    console.log("=========================================");
 
     const validatedResponse = validateAIResponse(response.text);
 
     console.log("========== VALIDATED RESPONSE ==========");
-console.log(validatedResponse);
+    console.log(validatedResponse);
+    console.log("=========================================");
 
     return validatedResponse;
 
   } catch (error) {
-    console.error("AI Service Error:", error);
+    console.error("❌ AI Service Error:");
+    console.error(error);
+
+    if (error.response) {
+      console.error("Response:", error.response);
+    }
 
     throw error;
   }
 };
-
 module.exports = {
   reviewCode,
 };
