@@ -1,140 +1,100 @@
+import { BookOpen, ExternalLink, GraduationCap, Lightbulb } from "lucide-react";
+
 function LearningTab({ review }) {
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
+      <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+        <div className="flex items-center gap-2 text-cyan-300">
+          <Lightbulb size={18} />
+          <h3 className="font-semibold">Explanation</h3>
+        </div>
+        <p className="mt-4 leading-8 text-slate-300">
+          {review.explanation || "No explanation was returned for this review."}
+        </p>
+      </div>
 
-      {/* Concepts Used */}
-
-      <div>
-
-        <h3 className="text-xl font-bold text-violet-400">
-          Concepts Used
-        </h3>
-
-        {review.concepts_used?.length ? (
-          <div className="mt-4 flex flex-wrap gap-3">
-
-            {review.concepts_used.map(
-              (concept, index) => (
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+          <div className="flex items-center gap-2 text-emerald-300">
+            <BookOpen size={18} />
+            <h3 className="font-semibold">Concepts Used</h3>
+          </div>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {review.concepts_used?.length ? (
+              review.concepts_used.map((concept, index) => (
                 <span
                   key={index}
-                  className="
-                    rounded-full
-                    bg-violet-500/20
-                    px-4
-                    py-2
-                    text-violet-300
-                  "
+                  className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-2 text-sm font-semibold text-emerald-200"
                 >
                   {concept}
                 </span>
-              )
+              ))
+            ) : (
+              <p className="text-sm text-slate-400">No concepts were returned.</p>
             )}
-
           </div>
-        ) : (
-          <p className="mt-4 text-slate-400">
-            No concepts detected.
-          </p>
-        )}
-
-      </div>
-
-      {/* Concepts To Learn */}
-
-      <div>
-
-        <h3 className="text-xl font-bold text-violet-400">
-          Recommended Concepts
-        </h3>
-
-        {review.concepts_to_learn?.length ? (
-          <ul className="mt-4 space-y-3">
-
-            {review.concepts_to_learn.map(
-              (concept, index) => (
-                <li
-                  key={index}
-                  className="rounded-xl bg-white/5 p-4 text-slate-300"
-                >
-                  • {concept}
-                </li>
-              )
-            )}
-
-          </ul>
-        ) : (
-          <p className="mt-4 text-green-400">
-            Great! Nothing specific to learn.
-          </p>
-        )}
-
-      </div>
-
-      {/* Similar Problems */}
-
-      <div>
-
-        <h3 className="text-xl font-bold text-violet-400">
-          Similar LeetCode Problems
-        </h3>
-
-        {review.similar_leetcode_problems?.length ? (
-          <div className="mt-4 space-y-4">
-
-            {review.similar_leetcode_problems.map(
-              (problem, index) => (
-                <div
-                  key={index}
-                  className="rounded-2xl bg-white/5 p-5"
-                >
-                  <h4 className="font-bold text-white">
-                    {problem.title}
-                  </h4>
-
-                  <p className="mt-2 text-slate-400">
-                    Difficulty: {problem.difficulty}
-                  </p>
-
-                  <a
-                    href={problem.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-3 inline-block text-violet-400 hover:text-violet-300"
-                  >
-                    Open Problem →
-                  </a>
-
-                </div>
-              )
-            )}
-
-          </div>
-        ) : (
-          <p className="mt-4 text-slate-400">
-            No related problems found.
-          </p>
-        )}
-
-      </div>
-
-      {/* AI Explanation */}
-
-      {review.explanation && (
-
-        <div>
-
-          <h3 className="text-xl font-bold text-violet-400">
-            AI Explanation
-          </h3>
-
-          <p className="mt-4 rounded-2xl bg-white/5 p-5 leading-8 text-slate-300">
-            {review.explanation}
-          </p>
-
         </div>
 
-      )}
+        <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+          <div className="flex items-center gap-2 text-violet-300">
+            <GraduationCap size={18} />
+            <h3 className="font-semibold">Concepts To Learn</h3>
+          </div>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {review.concepts_to_learn?.length ? (
+              review.concepts_to_learn.map((concept, index) => (
+                <span
+                  key={index}
+                  className="rounded-full border border-violet-400/20 bg-violet-400/10 px-3 py-2 text-sm font-semibold text-violet-200"
+                >
+                  {concept}
+                </span>
+              ))
+            ) : (
+              <p className="text-sm text-emerald-300">
+                No extra concepts were recommended.
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
 
+      <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+        <div className="flex items-center gap-2 text-amber-300">
+          <ExternalLink size={18} />
+          <h3 className="font-semibold">Similar LeetCode Problems</h3>
+        </div>
+
+        {review.similar_leetcode_problems?.length ? (
+          <div className="mt-4 grid gap-3">
+            {review.similar_leetcode_problems.map((problem, index) => (
+              <a
+                key={`${problem.title}-${index}`}
+                href={problem.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-xl border border-white/10 bg-black/20 p-4 transition hover:border-amber-300/30 hover:bg-amber-300/10"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <h4 className="font-semibold text-white">
+                      {problem.title || "Untitled problem"}
+                    </h4>
+                    <p className="mt-1 text-sm text-slate-400">
+                      {problem.difficulty || "Difficulty unavailable"}
+                    </p>
+                  </div>
+                  <ExternalLink size={16} className="text-amber-300" />
+                </div>
+              </a>
+            ))}
+          </div>
+        ) : (
+          <p className="mt-4 text-sm text-slate-400">
+            No related practice problems were returned.
+          </p>
+        )}
+      </div>
     </div>
   );
 }

@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import { Sparkles } from "lucide-react";
 
 function WelcomeCard({ user, stats }) {

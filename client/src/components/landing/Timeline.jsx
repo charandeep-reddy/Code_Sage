@@ -47,19 +47,15 @@ const journey = [
 
 function Timeline() {
   return (
-    <section
-      id="journey"
-      className="relative py-36 overflow-hidden"
-    >
-      <div className="max-w-[1200px] mx-auto px-8">
-
+    <section id="journey" className="relative overflow-hidden py-36">
+      <div className="mx-auto max-w-[1200px] px-8">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center"
         >
-          <span className="text-violet-400 font-semibold tracking-widest">
+          <span className="font-semibold tracking-widest text-violet-400">
             YOUR JOURNEY
           </span>
 
@@ -68,18 +64,15 @@ function Timeline() {
           </h2>
 
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-400 sm:text-xl">
-            CodeSage doesn't just review code—it guides your complete
-            journey from beginner to professional software engineer.
+            CodeSage does not just review code. It guides your complete journey
+            from beginner to professional software engineer.
           </p>
         </motion.div>
 
         <div className="relative mt-24">
-
-          {/* Timeline Line */}
-          <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-violet-500 via-blue-500 to-cyan-500 rounded-full" />
+          <div className="absolute bottom-0 left-8 top-0 w-1 rounded-full bg-gradient-to-b from-violet-500 via-blue-500 to-cyan-500" />
 
           <div className="space-y-16">
-
             {journey.map((item, index) => {
               const Icon = item.icon;
 
@@ -92,19 +85,12 @@ function Timeline() {
                   transition={{ delay: index * 0.15 }}
                   className="relative flex gap-10"
                 >
-                  {/* Timeline Dot */}
-
-                  <div className="relative z-10 flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-violet-600 to-blue-600 shadow-[0_0_35px_rgba(139,92,246,.45)]">
-
+                  <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-violet-600 to-blue-600 shadow-[0_0_35px_rgba(139,92,246,.45)]">
                     <Icon className="text-white" size={30} />
-
                   </div>
 
-                  {/* Card */}
-
-                  <div className="flex-1 rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-8 transition-all duration-300 hover:-translate-y-2 hover:border-violet-500/40">
-
-                    <span className="text-violet-400 font-semibold">
+                  <div className="flex-1 rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:border-violet-500/40">
+                    <span className="font-semibold text-violet-400">
                       Stage {index + 1}
                     </span>
 
@@ -116,20 +102,15 @@ function Timeline() {
                       {item.subtitle}
                     </h4>
 
-                    <p className="mt-5 text-slate-400 leading-8">
+                    <p className="mt-5 leading-8 text-slate-400">
                       {item.description}
                     </p>
-
                   </div>
-
                 </motion.div>
               );
             })}
-
           </div>
-
         </div>
-
       </div>
     </section>
   );

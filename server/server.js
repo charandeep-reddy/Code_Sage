@@ -9,15 +9,15 @@ async function startServer() {
   try {
     await db.query("SELECT 1");
 
-    console.log("✅ MySQL Connected Successfully");
+    console.log("MySQL Connected Successfully");
 
     app.listen(PORT, () => {
-      console.log(`🚀 Server running on http://localhost:${PORT}`);
+      console.log(`Server running on port ${PORT}`);
     });
-
   } catch (error) {
-    console.error("❌ Database Connection Failed");
+    console.error("Database Connection Failed");
     console.error(error);
+    process.exitCode = 1;
   }
 }
 

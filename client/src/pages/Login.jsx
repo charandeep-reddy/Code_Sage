@@ -101,7 +101,7 @@ function Login() {
 
         <div className="mt-8 text-center">
           <span className="text-slate-400">
-            Don't have an account?
+            Do not have an account?
           </span>
 
           <Link

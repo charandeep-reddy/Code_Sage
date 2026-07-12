@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import { useMemo, useState } from "react";
 import ChatInput from "./ChatInput";
 import ChatMessage from "./ChatMessage";

@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 function HistoryTable({ reviews }) {
   return (
     <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5">

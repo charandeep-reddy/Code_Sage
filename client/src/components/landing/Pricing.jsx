@@ -46,7 +46,7 @@ function Pricing() {
           </h2>
 
           <p className="mt-6 text-lg text-slate-400 sm:text-xl">
-            Start free. Upgrade whenever you're ready.
+            Start free. Upgrade whenever you are ready.
           </p>
         </motion.div>
 

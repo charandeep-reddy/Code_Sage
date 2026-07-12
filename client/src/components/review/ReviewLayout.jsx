@@ -8,13 +8,10 @@ function ReviewLayout() {
   const [code, setCode] = useState("");
   const [review, setReview] = useState(null);
   const [loading, setLoading] = useState(false);
-
-  // ⭐ NEW
   const editorRef = useRef(null);
 
   return (
-    <div className="grid gap-5 xl:grid-cols-[minmax(0,1.18fr)_minmax(420px,0.82fr)]">
-
+    <div className="grid gap-5 xl:grid-cols-[minmax(0,1.08fr)_minmax(440px,0.92fr)]">
       <CodeEditor
         editorRef={editorRef}
         language={language}
@@ -31,8 +28,8 @@ function ReviewLayout() {
         editorRef={editorRef}
         review={review}
         loading={loading}
+        sourceCode={code}
       />
-
     </div>
   );
 }
